@@ -1,0 +1,105 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /*tamanho da caixa a partir da borda da caixa*/
+}
+
+:root {
+  --bg-color: #121214;
+  --base-color:194;
+  --bg-primary-light: hsla(var(--base-color), 100%, 63%, 0.13);
+  --primary-color: hsl(var(--base-color), 100%, 63%);
+
+  --text-color: #FFFFFF;
+
+  font-size: 62.5%; /*assim 1rem = 10px*/
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Roboto', sans-serif;
+
+  display: grid; /*usado pra dispor o main e o footer*/
+
+  min-height: 100vh; 
+  /*altura mínima que vai esticar o body em toda a
+  viwport de altura, e não quando o conteúdo termina,
+  como estava finalizando antes, bem no meio da tela.
+  Agora ele estica o conteúdo na tela toda em termo
+  de altura. Meu grid está com essa alutra mínima de
+  sempre ocupar os '100 pedaços da tela' (viewport)
+  em altura, pois é vh (viewport altura) e não
+  vw (viewport-largura)*/
+
+}
+
+main { /*liberados com o grid; */
+  justify-self: center; /*'Pega eu mesmo e me justifica no centro.'*/
+  align-self: end; /*align vai mexer no eixo Y; Estou
+  alinhando ele na base da linha divisória do grid.
+  Mexendo em seu (self) eixo Y. */
+}
+
+#timer {
+  font-size: clamp(4rem, 4rem + 10vw, 8.8rem);
+
+  display: flex; /*para diminuir os espaços entre os spans e liberar mais propriedades*/
+
+  margin-bottom: 1.6rem;
+}
+
+#controls {
+  background-color: var(--bg-primary-light);
+  display: flex; /*apenas para garantir que ficarão sempre um ao lado do outro, e liberar propriedades*/
+  align-items: center; /*deixar bem centralizado, sempre bom fazer isso*/
+  justify-content: center; /*deixar bem justificado, sempre bom fazer isso*/
+  gap:3.2rem;
+
+  border-radius: 9999px;
+
+  /*Não preciso usar sempre o @mediaquery pra responsividade,
+  neste caso de um texto ou botão, posso usar a funcionalidade clamp(),
+  que foi feita mais pra texto, mas dá pra usar para width e height.*/
+  width: clamp(10rem, 10rem + 30vw, 22.8rem);
+  height: clamp(8rem, 5rem + 10vw, 10.8rem);
+
+}
+
+button {
+  background-color: transparent; /*retirando o fundo do navegador*/
+  border: none; /*retirando as bordas do navegador*/
+
+  cursor: pointer;
+}
+
+/*criada para sumir com os botões. Inicialmente colocamos
+manualmente no html (em alguns botões), depois será modificado com o JS*/
+.hide { 
+  display: none;
+}
+
+.play svg path,
+.pause svg path,
+.sound-on svg path {
+  fill:var(--primary-color);
+}
+
+button svg {
+  width: clamp(3.2rem, 2rem + 12vw, 6.4rem);
+}
+
+footer {
+  justify-self: end; /*Pega eu mesmo me justifica e me joga lá pra direita*/
+  align-self: end; /*Pega eu mesmo, meu alinhamento Y e joga lá no final. */
+
+  padding: 0 4rem 3.2rem 0;
+}
+
+
+
+/*Nota -> A propriedade justify-self mexe no eixo X,
+e a propriedade align-self mexe no eixo Y. Ambas são
+liberadas com o display grid, aqui usado no body, tendo
+como filhos alteráveis o main e o footer. Eles são meus
+quadros do grid.*/
